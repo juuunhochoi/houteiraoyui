@@ -63,7 +63,7 @@ body {
 
 .sidebar ul {
     list-style: none;
-    padding-bottom: 40px;
+    border: 1px solid black;
 }
 
 .sidebar li {
@@ -111,7 +111,11 @@ nav {
 }
 
 .menu-top {
-    height: 500px;
+    height: 60vh;
+}
+
+.menu-bottom {
+    height: 150px;
 }
 
 @media (max-width: 768px) {
