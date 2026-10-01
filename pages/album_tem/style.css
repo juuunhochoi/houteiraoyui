@@ -1,0 +1,45 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.main-content{
+    width: 80vh;
+    height: 50vh;
+    overflow: hidden;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.album{
+    height: 50vh;
+    width: 60vh;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.left-button,
+.right-button {
+    width: 5vh;
+    height: 5vh;
+}
