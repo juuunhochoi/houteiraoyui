@@ -56,16 +56,17 @@ body {
 }
 
 .sidebar h2 {
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
 .sidebar ul {
     list-style: none;
+    padding-bottom: 40px;
 }
 
 .sidebar li {
-    padding: 15px 10px;
+    padding: 10px 10px;
     margin-bottom: 5px;
     cursor: pointer;
     border-radius: 5px;
@@ -99,4 +100,11 @@ body {
     height: 100%;
     border: 1px solid black;
     display: block;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
