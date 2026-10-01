@@ -113,3 +113,47 @@ nav {
 .menu-top {
     height: 500px;
 }
+
+@media (max-width: 768px) {
+    #main-screen {
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        width: 100%;
+        height: 100dvh;
+        overflow: hidden;
+    }
+
+    .sidebar {
+        display: contents;
+    }
+
+    .menu-top-group {
+        grid-row: 1;
+        min-height: 0;
+    }
+
+    .menu-top {
+        height: auto;
+    }
+
+    .main-content {
+        grid-row: 2;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        padding: 10px;
+        overflow: hidden;
+    }
+
+    #project-frame {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .menu-bottom {
+        grid-row: 3;
+    }
+}
