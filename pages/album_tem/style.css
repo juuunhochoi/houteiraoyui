@@ -35,11 +35,10 @@ body {
     height: 50vh;
     width: 60vh;
     border: 1px solid black;
-    margin: 10px;
 }
 
 .left-button,
 .right-button {
-    width: 5vh;
-    height: 5vh;
+    width: 10vh;
+    height: 50vh;
 }
