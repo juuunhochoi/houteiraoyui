@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WATCHDOG</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- =========================================================
+         SCREEN 1 : 스케줄 입력
+    ========================================================== -->
+    <section id="screen-setup" class="screen">
+
+      <!-- 현재 시간 -->
+      <div class="clock-container">
+        <div id="h1" class="flip-card">00</div>
+        <div class="clock-colon">:</div>
+        <div id="m1" class="flip-card">00</div>
+        <div class="clock-colon">:</div>
+        <div id="s1" class="flip-card">00</div>
+      </div>
+
+
+      <!--
+        승인 버튼.
+        처음에는 이 위치에 있지만
+        JS가 실행되면서 to-do 헤더 안으로 이동시킨다.
+      -->
+      <button
+        id="approval-stamp"
+        class="approval-stamp"
+        disabled
+        type="button"
+        aria-label="오늘의 스케줄 승인"
+      >
+        <img
+          src="images/stamp.png"
+          alt=""
+          class="stamp-image"
+        >
+
+        <span class="stamp-fallback">
+          APPROVED
+        </span>
+      </button>
+
+
+      <!-- =======================================================
+           종이 영역
+      ======================================================== -->
+      <div class="excel-wrapper">
+
+        <!--
+          실제 종이.
+          일정이 늘어나면 위쪽으로 계속 확장된다.
+          최대 높이를 넘으면 오래된 행이 위로 사라진다.
+        -->
+        <div
+          id="paper-viewport"
+          class="paper-viewport"
+        >
+
+          <div
+            id="paper-track"
+            class="paper-track"
+          ></div>
+
+        </div>
+
+
+        <!-- =====================================================
+             입력 행
+             항상 아래에 고정
+        ====================================================== -->
+        <div class="excel-input-row">
+
+          <!-- START -->
+          <div class="excel-col input-col">
+
+            <button
+              id="add-btn"
+              class="add-btn"
+              type="button"
+              aria-label="스케줄 추가"
+            >
+              +
+            </button>
+
+            <div class="wheel-picker-group">
+
+              <div class="wheel-wrapper">
+                <div
+                  class="wheel-container"
+                  id="wheel-start-hour"
+                ></div>
+              </div>
+
+              <span class="time-colon">:</span>
+
+              <div class="wheel-wrapper">
+                <div
+                  class="wheel-container"
+                  id="wheel-start-min"
+                ></div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- END -->
+          <div class="excel-col input-col">
+
+            <div class="wheel-picker-group">
+
+              <div class="wheel-wrapper">
+                <div
+                  class="wheel-container"
+                  id="wheel-end-hour"
+                ></div>
+              </div>
+
+              <span class="time-colon">:</span>
+
+              <div class="wheel-wrapper">
+                <div
+                  class="wheel-container"
+                  id="wheel-end-min"
+                ></div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- TO-DO -->
+          <div class="excel-col input-col todo-input-col">
+
+            <input
+              type="text"
+              id="memo-input"
+              autocomplete="off"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SCREEN 2 : 실행 화면
+    ========================================================== -->
+    <section
+      id="screen-active"
+      class="screen hidden"
+    >
+
+      <!-- 현재 시간 -->
+      <div class="clock-container">
+
+        <div id="h2" class="flip-card">00</div>
+
+        <div class="clock-colon">:</div>
+
+        <div id="m2" class="flip-card">00</div>
+
+        <div class="clock-colon">:</div>
+
+        <div id="s2" class="flip-card">00</div>
+
+      </div>
+
+
+      <!-- 애니메이션 영역 -->
+      <div
+        id="anim-box"
+        class="animation-box"
+      >
+
+        <div
+          id="anim-placeholder"
+          class="anim-placeholder"
+        >
+          준비 중
+        </div>
+
+        <img
+          id="anim-img"
+          src=""
+          class="hidden"
+          alt="상태 애니메이션"
+        >
+
+      </div>
+
+
+      <!-- SIT -->
+      <button
+        id="seat-btn"
+        class="seat-btn hidden"
+        type="button"
+      >
+        SIT
+      </button>
+
+
+      <!-- 현재 스케줄 -->
+      <div
+        id="current-task"
+        class="current-task"
+      >
+        -
+      </div>
+
+
+      <!-- 전체 타임라인 -->
+      <div
+        id="active-timeline"
+        class="timeline"
+      ></div>
+
+
+        <!-- 스케줄 수정 -->
+        <button
+        id="back-btn"
+        class="back-btn"
+        type="button"
+        aria-label="스케줄 수정"
+        >
+        ←
+        </button>
+
+    </section>
+
+  </main>
+
+
+  <script src="./app.js"></script>
+
+</body>
+</html>

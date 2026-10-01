@@ -1,0 +1,1243 @@
+/* =========================================================
+   기본
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  min-height: 100%;
+
+  background: #ffffff;
+}
+
+body {
+  color: #111111;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   공통
+   ========================================================= */
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: #111111;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   전체
+   ========================================================= */
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   화면
+   ========================================================= */
+
+.screen {
+  width: 100%;
+  min-height: 100vh;
+
+  position: relative;
+
+  background: #ffffff;
+}
+
+#screen-setup {
+  padding-top: 32px;
+}
+
+
+/* =========================================================
+   시계
+   ========================================================= */
+
+.clock-container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  height: 58px;
+
+  color: #111111;
+}
+
+.flip-card {
+  min-width: 54px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 38px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-align: center;
+}
+
+.clock-colon {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 34px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   APPROVED
+   ========================================================= */
+
+/*
+ * 이제 표와 완전히 분리.
+ *
+ * 시계 바로 아래에 고정.
+ */
+
+.approval-stamp {
+  position: absolute;
+
+  top: 104px;
+  left: 50%;
+
+  transform:
+    translateX(-50%)
+    rotate(-3deg);
+
+  width: 150px;
+  height: 44px;
+
+  padding: 0;
+
+  border: 2px solid #a00000;
+
+  border-radius: 0;
+
+  background: #ffffff;
+
+  color: #a00000;
+
+  cursor: pointer;
+
+  z-index: 100;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.1s ease,
+    background 0.1s ease;
+}
+
+.approval-stamp:disabled {
+  opacity: 0.35;
+
+  cursor: default;
+}
+
+.approval-stamp.ready {
+  opacity: 1;
+}
+
+.approval-stamp:hover:not(:disabled) {
+  background: #f8f8f8;
+}
+
+.approval-stamp:active:not(:disabled) {
+  transform:
+    translateX(-50%)
+    rotate(-3deg)
+    translateY(2px);
+}
+
+
+/*
+ * 실제 도장 이미지가 있으면 사용.
+ */
+
+.stamp-image {
+  max-width: 90%;
+  max-height: 34px;
+
+  object-fit: contain;
+}
+
+
+/*
+ * 이미지가 없거나 깨지는 경우를 대비한 글자.
+ */
+
+.stamp-fallback {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+
+/*
+ * 승인 순간
+ */
+
+.approval-stamp.stamp-approved {
+  transform:
+    translateX(-50%)
+    rotate(-6deg)
+    scale(1.08);
+
+  border-width: 3px;
+}
+
+
+/* =========================================================
+   스케줄 입력 영역
+   ========================================================= */
+
+.excel-wrapper {
+  position: fixed;
+
+  left: 50%;
+  bottom: 24px;
+
+  transform:
+    translateX(-50%);
+
+  width:
+    min(
+      920px,
+      calc(100vw - 32px)
+    );
+
+  z-index: 50;
+
+  margin: 0;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   종이
+   ========================================================= */
+
+.paper-viewport {
+  width: 100%;
+
+  overflow: hidden;
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-left:
+    1px solid #222222;
+
+  border-right:
+    1px solid #222222;
+
+  border-radius: 0;
+}
+
+.paper-track {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   표 행
+   ========================================================= */
+
+.excel-header-row,
+.excel-data-row {
+  width: 100%;
+
+  height: 44px;
+  min-height: 44px;
+
+  display: grid;
+
+  grid-template-columns:
+    150px
+    150px
+    minmax(0, 1fr);
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   셀
+   ========================================================= */
+
+.excel-col {
+  min-width: 0;
+
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding:
+    0 12px;
+
+  border-top:
+    1px solid #222222;
+
+  border-right:
+    1px solid #222222;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+.excel-col:last-child {
+  border-right: 0;
+}
+
+
+/* =========================================================
+   헤더
+   ========================================================= */
+
+.header-col {
+  justify-content: center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-transform: lowercase;
+
+  letter-spacing: 0.02em;
+}
+
+
+/* =========================================================
+   데이터
+   ========================================================= */
+
+.excel-data-row {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 15px;
+}
+
+.excel-data-row .excel-col {
+  justify-content: center;
+}
+
+.excel-data-row .todo-cell {
+  justify-content: space-between;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   할 일 텍스트
+   ========================================================= */
+
+.todo-text {
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   삭제 버튼
+   ========================================================= */
+
+.delete-task-btn {
+  flex-shrink: 0;
+
+  width: 24px;
+  height: 24px;
+
+  margin-left: 10px;
+
+  padding: 0;
+
+  border:
+    1px solid #999999;
+
+  border-radius: 0;
+
+  background: #ffffff;
+
+  color: #555555;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 18px;
+
+  line-height: 20px;
+
+  cursor: pointer;
+}
+
+.delete-task-btn:hover {
+  background: #eeeeee;
+
+  color: #111111;
+}
+
+.delete-task-btn:active {
+  background: #dddddd;
+}
+
+
+/* =========================================================
+   BREAK
+   ========================================================= */
+
+.break-row {
+  color: #777777;
+}
+
+.break-row .todo-cell {
+  color: #777777;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   입력 행
+   ========================================================= */
+
+.excel-input-row {
+  width: 100%;
+
+  height: 60px;
+  min-height: 60px;
+
+  display: grid;
+
+  grid-template-columns:
+    150px
+    150px
+    minmax(0, 1fr);
+
+  background: #ffffff;
+
+  border:
+    1px solid #222222;
+
+  border-top:
+    1px solid #222222;
+}
+
+
+/* =========================================================
+   입력 셀
+   ========================================================= */
+
+.input-col {
+  height: 58px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    6px 10px;
+
+  border-right:
+    1px solid #222222;
+
+  background: #ffffff;
+}
+
+.input-col:last-child {
+  border-right: 0;
+}
+
+
+/* =========================================================
+   + 버튼
+   ========================================================= */
+
+.add-btn {
+  width: 30px;
+  height: 30px;
+
+  margin-right: 7px;
+
+  border:
+    1px solid #111111;
+
+  border-radius: 0;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-size: 22px;
+
+  line-height: 26px;
+
+  padding: 0;
+
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #eeeeee;
+}
+
+.add-btn:active {
+  background: #dddddd;
+}
+
+
+/* =========================================================
+   시간 휠
+   ========================================================= */
+
+.wheel-picker-group {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+}
+
+.wheel-wrapper {
+  width: 40px;
+  height: 44px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  background: #ffffff;
+}
+
+.wheel-container {
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+
+  scrollbar-width: none;
+
+  scroll-snap-type: y mandatory;
+
+  cursor: ns-resize;
+
+  overscroll-behavior: contain;
+
+  user-select: none;
+
+  touch-action: pan-y;
+}
+
+.wheel-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   휠 숫자
+   ========================================================= */
+
+.wheel-item {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  scroll-snap-align: center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 15px;
+
+  font-weight: 400;
+
+  color: #888888;
+}
+
+.wheel-item.selected {
+  color: #111111;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   휠 여백
+   ========================================================= */
+
+.wheel-spacer {
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+}
+
+
+/* =========================================================
+   시간 :
+   ========================================================= */
+
+.time-colon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 10px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: #111111;
+}
+
+
+/* =========================================================
+   할 일 입력
+   ========================================================= */
+
+#memo-input {
+  width: 100%;
+  height: 38px;
+
+  padding:
+    0 10px;
+
+  border:
+    1px solid #888888;
+
+  border-radius: 0;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-size: 14px;
+}
+
+#memo-input:focus {
+  border-color: #111111;
+}
+
+
+/*
+ * placeholder 자체를 표시하지 않는다.
+ */
+
+#memo-input::placeholder {
+  color: transparent;
+}
+
+
+/* =========================================================
+   Active 화면
+   ========================================================= */
+
+#screen-active {
+  background: #ffffff;
+
+  padding-top: 32px;
+}
+
+
+/* =========================================================
+   상태
+   ========================================================= */
+
+.status-badge {
+  width: fit-content;
+
+  margin:
+    20px auto 0;
+
+  padding:
+    5px 12px;
+
+  border:
+    1px solid #222222;
+
+  border-radius: 0;
+
+  background: #ffffff;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  color: #111111;
+}
+
+
+/* =========================================================
+   애니메이션
+   ========================================================= */
+
+.animation-box {
+  width:
+    min(
+      700px,
+      calc(100vw - 40px)
+    );
+
+  height: 430px;
+
+  margin:
+    24px auto 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  border:
+    1px solid #222222;
+
+  overflow: hidden;
+}
+
+.anim-placeholder {
+  color: #777777;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+}
+
+#anim-img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* =========================================================
+   SIT
+   ========================================================= */
+
+.seat-btn {
+  position: fixed;
+  z-index: 9999;
+
+  left: 50%;
+  bottom: 480px;
+  transform: translateX(-50%);
+
+  width: 120px;
+  height: 48px;
+
+  border: 1px solid #222222;
+  background: #ffffff;
+  color: #111111;
+
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.seat-btn:hover {
+  background: #eeeeee;
+}
+
+.seat-btn.hidden {
+  display: none;
+}
+
+.seat-btn:active {
+  background: #dddddd;
+}
+
+
+/* =========================================================
+   Active 타임라인
+   ========================================================= */
+
+.timeline {
+  position: fixed;
+
+  left: 50%;
+  bottom: 24px;
+
+  transform: translateX(-50%);
+
+  width: min(
+    700px,
+    calc(100vw - 40px)
+  );
+
+  border: 1px solid #222222;
+
+  background: #ffffff;
+
+  z-index: 30;
+
+  font-family:
+    "Courier New",
+    monospace;
+}
+
+.timeline .excel-header-row,
+.timeline .excel-data-row {
+  width: 100%;
+
+  height: 44px;
+  min-height: 44px;
+
+  display: grid;
+
+  grid-template-columns:
+    120px
+    120px
+    minmax(0, 1fr)
+    42px;
+}
+
+.timeline .excel-col {
+  min-width: 0;
+
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding:
+    0 12px;
+
+  border-right: 1px solid #222222;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+.timeline .excel-col:last-child {
+  border-right: 0;
+}
+
+.timeline .header-col {
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timeline .excel-data-row .excel-col {
+  justify-content: center;
+}
+
+.timeline .excel-data-row .todo-cell {
+  justify-content: flex-start;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 14px;
+}
+
+.timeline .break-row {
+  color: #777777;
+}
+
+.timeline .break-row .todo-cell {
+  color: #777777;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   완료 체크
+   ========================================================= */
+
+.timeline .check-cell {
+  justify-content: center !important;
+
+  padding: 0;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.timeline .check-header {
+  padding: 0;
+}
+
+.timeline .completed {
+  color: #777777;
+}
+
+.timeline .completed .todo-cell {
+  color: #777777;
+}
+
+/* =========================================================
+   뒤로가기
+   ========================================================= */
+
+.back-btn {
+  position: absolute;
+
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 24px;
+  font-weight: 400;
+
+  line-height: 32px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  z-index: 20;
+}
+
+.back-btn:hover {
+  background: #eeeeee;
+}
+
+
+/* =========================================================
+   모바일
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  #screen-setup,
+  #screen-active {
+    padding-top: 20px;
+  }
+
+
+  .clock-container {
+    height: 48px;
+  }
+
+
+  .flip-card {
+    min-width: 42px;
+
+    font-size: 28px;
+  }
+
+
+  .clock-colon {
+    font-size: 26px;
+  }
+
+
+  /*
+   * APPROVED는 시계 아래 고정.
+   */
+
+  .approval-stamp {
+    top: 78px;
+
+    width: 130px;
+    height: 40px;
+  }
+
+
+  .stamp-fallback {
+    font-size: 13px;
+  }
+
+
+  .excel-wrapper {
+    width:
+      calc(100vw - 16px);
+
+    bottom: 10px;
+  }
+
+
+  .excel-header-row,
+  .excel-data-row,
+  .excel-input-row {
+    grid-template-columns:
+      90px
+      90px
+      minmax(0, 1fr);
+  }
+
+
+  .excel-col {
+    padding:
+      0 6px;
+  }
+
+
+  .header-col {
+    font-size: 11px;
+  }
+
+
+  .excel-data-row {
+    font-size: 13px;
+  }
+
+
+  .excel-data-row .todo-cell {
+    font-size: 13px;
+  }
+
+
+  .wheel-wrapper {
+    width: 34px;
+  }
+
+
+  .wheel-item {
+    font-size: 14px;
+  }
+
+
+  .wheel-item.selected {
+    font-size: 15px;
+  }
+
+
+  .time-colon {
+    font-size: 14px;
+  }
+
+
+  .add-btn {
+    width: 26px;
+    height: 26px;
+
+    font-size: 19px;
+
+    margin-right: 3px;
+  }
+
+
+  #memo-input {
+    font-size: 13px;
+
+    padding:
+      0 7px;
+  }
+
+
+  .delete-task-btn {
+    width: 22px;
+    height: 22px;
+
+    font-size: 16px;
+
+    margin-left: 6px;
+  }
+
+
+  .animation-box {
+    margin: 60px auto 0;
+    height: 320px;
+  }
+}
+
+
+/* =========================================================
+   아주 작은 화면
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .excel-header-row,
+  .excel-data-row,
+  .excel-input-row {
+    grid-template-columns:
+      75px
+      75px
+      minmax(0, 1fr);
+  }
+
+
+  .wheel-wrapper {
+    width: 30px;
+  }
+
+
+  .input-col {
+    padding:
+      5px 4px;
+  }
+
+
+  .add-btn {
+    margin-right: 2px;
+  }
+
+
+  .approval-stamp {
+    width: 120px;
+  }
+}
+
+.todo-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.todo-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-task-btn {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #888;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.delete-task-btn:hover {
+  color: #111;
+}
