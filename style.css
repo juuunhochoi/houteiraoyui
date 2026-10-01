@@ -50,8 +50,9 @@ body {
     width: 250px;
     height: 100%;
     padding: 30px 20px;
-    background-color: #97999d;
-    color: white;
+    background-color: #ffffff;
+    border: 1px solid black;
+    color: rgb(21, 20, 20);
     flex-shrink: 0;
 }
 
