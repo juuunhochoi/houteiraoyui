@@ -186,7 +186,7 @@ function startClock() {
         renderActiveTimeline();
       }
 
-    }, 1000);
+    }, 990);
 
 }
 
@@ -2265,7 +2265,7 @@ function openDoorForTask() {
         enterSitWaiting();
 
       },
-      1000
+      990
     );
 
 }
@@ -2452,7 +2452,7 @@ function finishCurrentTask() {
         moveToNextTask();
 
       },
-      1000
+      990
     );
 
 }
