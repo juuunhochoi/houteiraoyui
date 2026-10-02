@@ -1038,7 +1038,7 @@ button {
    아주 작은 화면
    ========================================================= */
 
-@media (max-width: 430px) {
+@media (max-width: 768px) {
 
   .excel-header-row,
   .excel-data-row,
