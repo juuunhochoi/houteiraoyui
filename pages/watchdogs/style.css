@@ -822,7 +822,7 @@ button {
   z-index: 9999;
 
   left: 50%;
-  bottom: 480px;
+  bottom: 50%;
   transform: translateX(-50%);
 
   width: 120px;
@@ -1031,144 +1031,7 @@ button {
 }
 
 
-/* =========================================================
-   모바일
-   ========================================================= */
 
-@media (max-width: 700px) {
-
-  #screen-setup,
-  #screen-active {
-    padding-top: 20px;
-  }
-
-
-  .clock-container {
-    height: 48px;
-  }
-
-
-  .flip-card {
-    min-width: 42px;
-
-    font-size: 28px;
-  }
-
-
-  .clock-colon {
-    font-size: 26px;
-  }
-
-
-  /*
-   * APPROVED는 시계 아래 고정.
-   */
-
-  .approval-stamp {
-    top: 78px;
-
-    width: 130px;
-    height: 40px;
-  }
-
-
-  .stamp-fallback {
-    font-size: 13px;
-  }
-
-
-  .excel-wrapper {
-    width:
-      calc(100vw - 16px);
-
-    bottom: 10px;
-  }
-
-
-  .excel-header-row,
-  .excel-data-row,
-  .excel-input-row {
-    grid-template-columns:
-      90px
-      90px
-      minmax(0, 1fr);
-  }
-
-
-  .excel-col {
-    padding:
-      0 6px;
-  }
-
-
-  .header-col {
-    font-size: 11px;
-  }
-
-
-  .excel-data-row {
-    font-size: 13px;
-  }
-
-
-  .excel-data-row .todo-cell {
-    font-size: 13px;
-  }
-
-
-  .wheel-wrapper {
-    width: 34px;
-  }
-
-
-  .wheel-item {
-    font-size: 14px;
-  }
-
-
-  .wheel-item.selected {
-    font-size: 15px;
-  }
-
-
-  .time-colon {
-    font-size: 14px;
-  }
-
-
-  .add-btn {
-    width: 26px;
-    height: 26px;
-
-    font-size: 19px;
-
-    margin-right: 3px;
-  }
-
-
-  #memo-input {
-    font-size: 13px;
-
-    padding:
-      0 7px;
-  }
-
-
-  .delete-task-btn {
-    width: 22px;
-    height: 22px;
-
-    font-size: 16px;
-
-    margin-left: 6px;
-  }
-
-
-  .animation-box {
-    margin: 60px auto 0;
-    height: 320px;
-  }
-}
 
 
 /* =========================================================

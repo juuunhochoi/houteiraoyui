@@ -58,8 +58,8 @@ body {
 }
 
 .sidebar li {
-    padding: 10px 10px;
-    margin-bottom: 5px;
+    padding: 6px 6px;
+    margin: 5px;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.2s ease;
@@ -72,7 +72,7 @@ body {
 
 .sidebar {
     display: grid;
-    grid-template-rows: minmax(150px, 1fr) 200px;
+    grid-template-rows: minmax(0, 1fr) 180px;
     height: 100vh;
     width: 280px;
     
@@ -85,7 +85,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    min-height: 150px;
+    min-height: 0;
     height: 100%;
 
     width: 240px;
@@ -101,8 +101,11 @@ body {
 }
 
 .menu-bottom {
-    flex: 1;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
     border: 1px solid black;
+    flex: 1;
 }
 
 
@@ -164,20 +167,8 @@ body {
         display: contents;
     }
 
-    .sidebar li {
-        padding: 10px 10px;
-        margin: 5px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: background-color 0.2s ease;
-        justify-content: center;
-    }
 
     .sidebar-block {
-        display: flex;
-        flex-direction: column;
-
-
         width: 100vw;
         padding: 20px 20px; 
         border: 1px solid black;
@@ -185,18 +176,26 @@ body {
 
     .menu-top {
         display: grid;
-        grid-template-columns: auto auto auto auto auto;
-        height: 60px;
+        grid-template-columns: repeat(5, auto);
+        align-items: center;
+
         overflow-x: auto;
-        border: 1px solid black;
     }
 
     .menu-bottom {
         display: grid;
-        grid-template-columns: auto auto auto;
-        border: 1px solid black;
-        height: 60px; 
+        grid-template-columns: repeat(3, 1fr);
+
+        align-items: center;
+
     }
 
-
+    .sidebar li {
+        padding: 10px 10px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+        text-align: center;
+    }
 }
