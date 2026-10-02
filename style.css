@@ -46,15 +46,7 @@ body {
 
 /* Sidebar */
 
-.sidebar {
-    width: 240px;
-    height: 100%;
-    padding: 30px 20px;
-    background-color: #ffffff;
-    border: 1px solid black;
-    color: rgb(21, 20, 20);
-    flex-shrink: 0;
-}
+
 
 .sidebar h2 {
     font-size: 25px;
@@ -63,7 +55,6 @@ body {
 
 .sidebar ul {
     list-style: none;
-    border: 1px solid black;
 }
 
 .sidebar li {
@@ -77,6 +68,43 @@ body {
 .sidebar li:hover {
     background-color: #ced1d5;
 }
+
+
+.sidebar {
+    display: grid;
+    grid-template-rows: minmax(150px, 1fr) 200px;
+    height: 100vh;
+    width: 280px;
+    
+    background-color: #ffffff;
+    border: 1px solid black;
+    color: rgb(21, 20, 20);
+}
+
+.sidebar-block {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 150px;
+    height: 100%;
+
+    width: 240px;
+    padding: 30px 20px; 
+    border: 1px solid black;
+}
+
+.menu-top {
+    flex: 1;
+    min-height: 0px;
+    overflow-y: auto;
+    border: 1px solid black;
+}
+
+.menu-bottom {
+    flex: 1;
+    border: 1px solid black;
+}
+
 
 /* Main Content */
 
@@ -103,20 +131,8 @@ body {
     display: block;
 }
 
-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
 
-.menu-top {
-    height: 60vh;
-}
 
-.menu-bottom {
-    height: 150px;
-}
 
 @media (max-width: 768px) {
     #main-screen {
@@ -125,19 +141,6 @@ nav {
         width: 100%;
         height: 100dvh;
         overflow: hidden;
-    }
-
-    .sidebar {
-        display: contents;
-    }
-
-    .menu-top-group {
-        grid-row: 1;
-        min-height: 0;
-    }
-
-    .menu-top {
-        height: auto;
     }
 
     .main-content {
@@ -157,7 +160,43 @@ nav {
         min-height: 0;
     }
 
-    .menu-bottom {
-        grid-row: 3;
+    .sidebar {
+        display: contents;
     }
+
+    .sidebar li {
+        padding: 10px 10px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+        justify-content: center;
+    }
+
+    .sidebar-block {
+        display: flex;
+        flex-direction: column;
+
+
+        width: 100vw;
+        padding: 20px 20px; 
+        border: 1px solid black;
+    }
+
+    .menu-top {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        height: 60px;
+        overflow-x: auto;
+        border: 1px solid black;
+    }
+
+    .menu-bottom {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        border: 1px solid black;
+        height: 60px; 
+    }
+
+
 }
