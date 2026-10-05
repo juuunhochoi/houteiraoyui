@@ -14,9 +14,11 @@ const infoAbout = document.getElementById("infoAbout");
 const infoMap = document.getElementById("infoMap");
 const infoLicense = document.getElementById("infoLicense");
 
-// introScreen.addEventListener("click", () => {
-//     introScreen.classList.add("hidden");
-// });
+
+// ==============================
+// About JSON
+// ==============================
+
 let pageInfo = {};
 
 fetch("./about.json")
@@ -24,78 +26,155 @@ fetch("./about.json")
     .then(data => {
         pageInfo = data;
         console.log(pageInfo);
+    })
+    .catch(error => {
+        console.error("about.json을 불러오지 못했습니다:", error);
     });
 
 
-// 페이지 이름 통일용
+// ==============================
+// 현재 페이지
+// ==============================
 
 let currentPage = null;
 
+
+// ==============================
+// 페이지 열기
+// ==============================
+
 function openPage(pageName) {
     currentPage = pageName;
+
+    // 새 페이지를 불러오는 동안 iframe을 숨김
+    projectFrame.classList.add("hidden");
+
     projectFrame.src = `./pages/${pageName}/index.html`;
 }
 
+
+// ==============================
+// iframe 로딩 완료
+// ==============================
+
+projectFrame.addEventListener("load", () => {
+
+    // 현재 페이지가 있을 때만 iframe 표시
+    if (currentPage !== null) {
+        projectFrame.classList.remove("hidden");
+    }
+});
+
+
+// ==============================
+// 프로젝트 메뉴
+// ==============================
+
 projects.forEach((project) => {
+
     project.addEventListener("click", () => {
 
-        projectFrame.src = "";
-        back();
+        const pageName = project.dataset.page;
 
-        openPage(project.dataset.page);
+        // 기존 Info 닫기
+        closeInfo();
+
+        // 버튼 상태 초기화
+        backButton.classList.add("hidden");
+        infoButton.classList.remove("hidden");
+
+        // 새 프로젝트 열기
+        openPage(pageName);
     });
+
 });
 
 
+// ==============================
+// Home
+// ==============================
 
-
-// 버튼 로직
 home.addEventListener("click", () => {
-    currentPage = null;
-    projectFrame.src="";
 
+    currentPage = null;
+
+    // Info 닫기
+    closeInfo();
+
+    // iframe 숨기기
+    projectFrame.classList.add("hidden");
+
+    // 버튼 상태
+    backButton.classList.add("hidden");
+    infoButton.classList.remove("hidden");
+
+    // iframe 초기화
+    projectFrame.src = "about:blank";
 });
+
+
+// ==============================
+// Info 버튼
+// ==============================
 
 infoButton.addEventListener("click", () => {
     info();
 });
 
+
+// ==============================
+// Back 버튼
+// ==============================
+
 backButton.addEventListener("click", () => {
-    back();
-});
 
-function info () {
-    if (currentPage!=null) {
-        infoButton.classList.add("hidden");
-        backButton.classList.remove("hidden");
-
-        viewInfo();
-    }
-}
-
-function back () {
-    
-    backButton.classList.add("hidden");
-    infoButton.classList.remove("hidden");
     closeInfo();
 
+    // 프로젝트 화면 다시 표시
+    projectFrame.classList.remove("hidden");
+
+    // 버튼 상태
+    backButton.classList.add("hidden");
+    infoButton.classList.remove("hidden");
+});
+
+
+// ==============================
+// Info 열기
+// ==============================
+
+function info() {
+
+    // 프로젝트가 선택되지 않았으면 아무것도 하지 않음
+    if (currentPage === null) {
+        return;
+    }
+
+    // Info 데이터 표시
+    viewInfo();
+
+    // iframe 숨기기
+    projectFrame.classList.add("hidden");
+
+    // 버튼 상태
+    infoButton.classList.add("hidden");
+    backButton.classList.remove("hidden");
 }
 
 
-// view info
-// about.json 불러오기
-
+// ==============================
+// Info 내용 표시
+// ==============================
 
 function viewInfo() {
+
     const info = pageInfo[currentPage];
 
-    console.log("infoTitle:", infoTitle);
-    console.log("infoAbout:", infoAbout);
-    console.log("infoMap:", infoMap);
-    console.log("infoLicense:", infoLicense);
+    console.log("currentPage:", currentPage);
+    console.log("info:", info);
 
     if (!info) {
-        console.log("해당 페이지 정보 없음");
+        console.log("해당 페이지 정보 없음:", currentPage);
         return;
     }
 
@@ -105,10 +184,13 @@ function viewInfo() {
     infoLicense.textContent = info.license;
 
     infoPanel.classList.remove("hidden");
-    projectFrame.classList.add("hidden");
 }
+
+
+// ==============================
+// Info 닫기
+// ==============================
 
 function closeInfo() {
     infoPanel.classList.add("hidden");
-    projectFrame.classList.remove("hidden");
 }
