@@ -32,15 +32,17 @@ fetch("./about.json")
 let currentPage = null;
 
 function openPage(pageName) {
+    currentPage = pageName;
     projectFrame.src = `./pages/${pageName}/index.html`;
 }
 
 projects.forEach((project) => {
     project.addEventListener("click", () => {
 
-        openPage(project.dataset.page);
-        currentPage = project.dataset.page;
+        projectFrame.src = "";
         back();
+
+        openPage(project.dataset.page);
     });
 });
 
@@ -103,8 +105,10 @@ function viewInfo() {
     infoLicense.textContent = info.license;
 
     infoPanel.classList.remove("hidden");
+    projectFrame.classList.add("hidden");
 }
 
 function closeInfo() {
     infoPanel.classList.add("hidden");
+    projectFrame.classList.remove("hidden");
 }
