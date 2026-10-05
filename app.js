@@ -2,53 +2,109 @@
 const introScreen = document.getElementById("intro-screen");
 const projectFrame = document.getElementById("project-frame");
 const projects = document.querySelectorAll(".sidebar li[data-page]");
+
+const aboutButton = document.getElementById("aboutButton");
 const infoButton = document.getElementById("infoButton");
+const backButton = document.getElementById("backButton");
+const home = document.getElementById("home");
+
+const infoPanel = document.getElementById("infoPanel");
+const infoTitle = document.getElementById("infoTitle");
+const infoAbout = document.getElementById("infoAbout");
+const infoMap = document.getElementById("infoMap");
+const infoLicense = document.getElementById("infoLicense");
 
 // introScreen.addEventListener("click", () => {
 //     introScreen.classList.add("hidden");
 // });
-
-projects.forEach((project) => {
-    project.addEventListener("click", () => {
-    projectFrame.src = project.dataset.page;
-});
-});
-
-
 let pageInfo = {};
-let currentPage = null;
 
-
-// about.json 불러오기
 fetch("./about.json")
     .then(response => response.json())
     .then(data => {
         pageInfo = data;
+        console.log(pageInfo);
     });
 
 
-// 프로젝트 클릭
+// 페이지 이름 통일용
+
+let currentPage = null;
+
+function openPage(pageName) {
+    projectFrame.src = `./pages/${pageName}/index.html`;
+}
+
 projects.forEach((project) => {
     project.addEventListener("click", () => {
 
-        const page = project.dataset.page;
-
-        projectFrame.src = page;
-
-        // 현재 페이지 기록
-        currentPage = page;
+        openPage(project.dataset.page);
+        currentPage = project.dataset.page;
+        back();
     });
 });
 
 
-// About 버튼
-infoButton.addEventListener("click", () => {
 
+
+// 버튼 로직
+home.addEventListener("click", () => {
+    currentPage = null;
+    projectFrame.src="";
+
+});
+
+infoButton.addEventListener("click", () => {
+    info();
+});
+
+backButton.addEventListener("click", () => {
+    back();
+});
+
+function info () {
+    if (currentPage!=null) {
+        infoButton.classList.add("hidden");
+        backButton.classList.remove("hidden");
+
+        viewInfo();
+    }
+}
+
+function back () {
+    
+    backButton.classList.add("hidden");
+    infoButton.classList.remove("hidden");
+    closeInfo();
+
+}
+
+
+// view info
+// about.json 불러오기
+
+
+function viewInfo() {
     const info = pageInfo[currentPage];
 
+    console.log("infoTitle:", infoTitle);
+    console.log("infoAbout:", infoAbout);
+    console.log("infoMap:", infoMap);
+    console.log("infoLicense:", infoLicense);
+
     if (!info) {
-        console.log("현재 페이지의 정보가 없습니다.");
+        console.log("해당 페이지 정보 없음");
         return;
     }
 
-});
+    infoTitle.textContent = info.title;
+    infoAbout.textContent = info.about;
+    infoMap.textContent = info.map;
+    infoLicense.textContent = info.license;
+
+    infoPanel.classList.remove("hidden");
+}
+
+function closeInfo() {
+    infoPanel.classList.add("hidden");
+}

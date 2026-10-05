@@ -1,16 +1,16 @@
 {
     "watchdogs": {
         "title": "watchdogs",
-        "about": "",
-        "map": "",
-        "license":""
+        "about": "this is watchdogs about.",
+        "map": "this is watchdogs map.",
+        "license":"this is watchdogs license."
     },
 
     "gallery": {
         "title": "gallery",
-        "about": "",
-        "map": "",
-        "license":""
+        "about": "this is gallery about.",
+        "map": "this is gallery map.",
+        "license":"this is gallery license."
     },
 
     "": {

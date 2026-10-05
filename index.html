@@ -26,20 +26,20 @@
         
         <aside class="sidebar">
             <div class="sidebar-block">
-                <h2>河底撈魚</h2>
+                <h2 id="home">河底撈魚</h2>
                 <ul class="menu-top">
-                    <li data-page="pages/watchdogs/index.html">Watchdog</li>
-                    <li data-page="pages/album_tem/index.html">album</li>
+                    <li data-page="gallery">GALLERY</li>
+                    <li data-page="watchdogs">Watchdog</li>
+                    
                 </ul>
 
-                <!-- 추후 프로젝트 늘어나면 추가 <p>--------------</p> -->
             </div>
 
             <div class="sidebar-block">
                 <ul class="menu-bottom">
-                    <li data-page="pages/inspiration/index.html">inspiration</li>
-                    <li data-page="pages/contact/index.html">contact</li>
-                    <li data-page="pages/exit/index.html">exit</li>
+                    <li data-page="inspiration">inspiration</li>
+                    <li data-page="contact">contact</li>
+                    <li data-page="exit">exit</li>
                 </ul>
                 
             </div>
@@ -49,10 +49,23 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <button id="infoButton">ⓘ</button>
-            <iframe id="project-frame"></iframe>
-            
-            
+            <div id="frame-container">
+                <div id="aboutButton">
+                    <button id="infoButton">ⓘ</button>
+                    <button id="backButton" class="hidden"> &lt; </button>
+                </div>
+
+                <div id="infoPanel" class="hidden">
+                    <h2 id="infoTitle"></h2>
+                    <p id="infoAbout"></p>
+                    <p id="infoMap"></p>
+                    <p id="infoLicense"></p>
+                </div>
+
+                <iframe id="project-frame"></iframe>
+        
+            </div>
+ 
         </main>
     </div>
 
