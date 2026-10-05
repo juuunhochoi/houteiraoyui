@@ -44,6 +44,9 @@ body {
     display: none !important;
 }
 
+
+
+
 /* Sidebar */
 
 
@@ -109,6 +112,8 @@ body {
 }
 
 
+
+
 /* Main Content */
 
 .main-content {
@@ -132,7 +137,27 @@ body {
     height: 100%;
     border: 1px solid black;
     display: block;
+    z-index: 0;
 }
+
+#infoButton {
+    position: absolute;
+    right: 60px;
+    top: 60px;
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
