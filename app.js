@@ -88,9 +88,8 @@ projects.forEach((project) => {
 
 home.addEventListener("click", () => {
 
-    currentPage = null;
+    currentPage = "home";
 
-    // Info 닫기
     closeInfo();
 
     // iframe 숨기기
@@ -118,7 +117,6 @@ backButton.addEventListener("click", () => {
 
     closeInfo();
 
-    // 프로젝트 화면 다시 표시
     projectFrame.classList.remove("hidden");
 
     // 버튼 상태

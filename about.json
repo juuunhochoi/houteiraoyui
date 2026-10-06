@@ -1,4 +1,11 @@
 {
+    "home": {
+        "title": "Home",
+        "about": "this is home about",
+        "map": "this is home map",
+        "license":"this is home license"
+    },
+
     "watchdogs": {
         "title": "watchdogs",
         "about": "this is watchdogs about.",
