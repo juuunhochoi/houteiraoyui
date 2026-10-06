@@ -13,25 +13,28 @@ body {
 }
 
 #main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    margin: 40px;
 }
 
 .main-content{
-    width: 80vh;
-    height: 50vh;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
     border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
+
 }
 
-.album{
+.top-layer,
+.bottom-layer {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+}
+
+/* .album{
     height: 50vh;
     width: 60vh;
     border: 1px solid black;
@@ -41,4 +44,22 @@ body {
 .right-button {
     width: 10vh;
     height: 50vh;
+} */
+
+
+#page-title {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+#page-info {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    font-size: 18px;
+    border: 1px solid black;
 }

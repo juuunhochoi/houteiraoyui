@@ -38,11 +38,6 @@ fetch("./about.json")
 
 let currentPage = null;
 
-
-// ==============================
-// 페이지 열기
-// ==============================
-
 function openPage(pageName) {
     currentPage = pageName;
 
@@ -76,14 +71,11 @@ projects.forEach((project) => {
 
         const pageName = project.dataset.page;
 
-        // 기존 Info 닫기
         closeInfo();
 
-        // 버튼 상태 초기화
         backButton.classList.add("hidden");
         infoButton.classList.remove("hidden");
 
-        // 새 프로젝트 열기
         openPage(pageName);
     });
 
@@ -122,10 +114,6 @@ infoButton.addEventListener("click", () => {
 });
 
 
-// ==============================
-// Back 버튼
-// ==============================
-
 backButton.addEventListener("click", () => {
 
     closeInfo();
@@ -139,32 +127,21 @@ backButton.addEventListener("click", () => {
 });
 
 
-// ==============================
-// Info 열기
-// ==============================
 
 function info() {
 
-    // 프로젝트가 선택되지 않았으면 아무것도 하지 않음
     if (currentPage === null) {
         return;
     }
 
-    // Info 데이터 표시
     viewInfo();
-
-    // iframe 숨기기
     projectFrame.classList.add("hidden");
 
-    // 버튼 상태
     infoButton.classList.add("hidden");
     backButton.classList.remove("hidden");
 }
 
 
-// ==============================
-// Info 내용 표시
-// ==============================
 
 function viewInfo() {
 
@@ -185,11 +162,6 @@ function viewInfo() {
 
     infoPanel.classList.remove("hidden");
 }
-
-
-// ==============================
-// Info 닫기
-// ==============================
 
 function closeInfo() {
     infoPanel.classList.add("hidden");
