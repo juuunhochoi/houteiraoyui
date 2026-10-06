@@ -36,7 +36,7 @@ fetch("./about.json")
 // 현재 페이지
 // ==============================
 
-let currentPage = null;
+let currentPage = "home";
 
 function openPage(pageName) {
     currentPage = pageName;
@@ -110,6 +110,7 @@ home.addEventListener("click", () => {
 
 infoButton.addEventListener("click", () => {
     info();
+    console.log(currentPage);
 });
 
 
