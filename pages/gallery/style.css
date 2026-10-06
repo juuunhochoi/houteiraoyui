@@ -20,8 +20,8 @@ body {
 }
 
 .main-container {
-        /* display: grid;
-    grid-template-rows: auto 1fr auto; */
+    display: grid;
+    grid-template-rows: auto 1fr auto; 
     
     width: 100%;
     height: 100%;
@@ -29,45 +29,50 @@ body {
 }
 
 .main-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     width: 100%;
     height: 100%;
     border: 1px solid black;
+
+    align-items: center;
+    justify-items: center;
 
 }
 
 .top-layer,
 .bottom-layer {
     width: 100%;
-    height: 50px;
+    height: 120px;
     border: 1px solid black;
+
+    align-items: center;
+    justify-items: center;
 }
 
-/* .album{
-    height: 50vh;
-    width: 60vh;
+.album{
+    height: 100%;
+    width: calc(100vh - 200px);
     border: 1px solid black;
 }
 
 .left-button,
 .right-button {
-    width: 10vh;
-    height: 50vh;
-} */
+    width: 100%;
+    height: 100%;
+}
 
 
 #page-title {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    font-size: 24px;
+    height: 10px;
+    width: 50px;
     font-weight: bold;
     border: 1px solid black;
 }
 
 #page-info {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    font-size: 18px;
+    height: 10px;
+    width: 50px;
+    font-weight: bold;
     border: 1px solid black;
 }
