@@ -8,16 +8,24 @@
 body {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+    /* overflow: hidden;
+    font-family: Arial, sans-serif; */
 }
 
 #main {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+
     width: 100%;
     height: 100%;
-    margin: 40px;
+    padding: 40px;
+}
+
+.main-container {
+        /* display: grid;
+    grid-template-rows: auto 1fr auto; */
+    
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
 }
 
 .main-content{
