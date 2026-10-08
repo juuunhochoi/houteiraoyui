@@ -25,7 +25,6 @@ fetch("./about.json")
     .then(response => response.json())
     .then(data => {
         pageInfo = data;
-        console.log(pageInfo);
     })
     .catch(error => {
         console.error("about.json을 불러오지 못했습니다:", error);
@@ -110,7 +109,6 @@ home.addEventListener("click", () => {
 
 infoButton.addEventListener("click", () => {
     info();
-    console.log(currentPage);
 });
 
 
@@ -145,9 +143,6 @@ function info() {
 function viewInfo() {
 
     const info = pageInfo[currentPage];
-
-    console.log("currentPage:", currentPage);
-    console.log("info:", info);
 
     if (!info) {
         console.log("해당 페이지 정보 없음:", currentPage);
